@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
     const std::vector<std::string_view> args(argv, argv + argc);
     bool nogui = has_option(args, "-nogui");
     bool fast = has_option(args, "-fast");
+    bool norand = has_option(args, "-norand");
     std::string_view max_cycles_str = get_option(args, "-c");
     int max_cycles{-1};
     if (max_cycles_str != "")
@@ -164,8 +165,9 @@ int main(int argc, char *argv[])
 
         // Update and draw grid
 
-        if (nogui)
+        if (nogui && norand)
         {
+        } else {
             grid.set_rand();
         }
 
@@ -251,7 +253,7 @@ void drawGrid(Grid grid)
                 int mass = grid.cells[i][j].mass;
                 float norm = static_cast<float>(mass) / (1 + mass);
                 int alpha = static_cast<int>(255 * norm);
-                cell_color = {0, 255, 0, alpha};
+                cell_color = {153, 255, 204, alpha};
             }
             else
             {

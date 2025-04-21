@@ -30,10 +30,10 @@ void Grid::set_rand()
         unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
         std::default_random_engine generator(seed);
         std::uniform_int_distribution<int> distributionInteger(1, 3);
-        std::bernoulli_distribution distributionBool(0.25);
-        for (auto i = 0; i < this->size / 4; i++)
+        std::bernoulli_distribution distributionBool(0.1);
+        for (auto i = 0; i < this->size; i++)
         {
-            for (auto j = 0; j < this->size / 4; j++)
+            for (auto j = 0; j < this->size; j++)
             {
                 cells[i][j].alive = distributionBool(generator);
                 cells[i][j].age = 0;
