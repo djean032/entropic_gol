@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
                 {
                     mass_counts[cell.mass] += 1;
                 }
-
+/*
                 std::cout << cycles << std::endl;
                 // std::cout << "Total Mass: " << total_mass << std::endl;
                 outFile << cycles << ",";
@@ -202,6 +202,7 @@ int main(int argc, char *argv[])
                     entropy -=
                         (static_cast<double>(mass.second) / 1600) * std::log2(static_cast<double>(mass.second) / 1600);
                 }
+*/
 
                 for (size_t i = 0; i < 11; i++)
                 {
@@ -215,7 +216,7 @@ int main(int argc, char *argv[])
                     }
                 }
                 outFile << total_mass << "\n";
-                std::cout << entropy << std::endl;
+//                std::cout << entropy << std::endl;
             }
         }
     }
