@@ -103,6 +103,8 @@ int main(int argc, char *argv[])
     Grid update_grid = grid;
     std::ofstream outFile;
     outFile.open(full_filename);
+    outFile << "Cycles,Count_0,Count_1,Count_2,Count_3,Count_4,Count_5,Count_6,Count_7,Count_8,Count_9,Count_10,Total_"
+               "Mass\n";
 
     // Main loop
     bool run = true;
@@ -114,7 +116,8 @@ int main(int argc, char *argv[])
     {
         if (grid.running)
         {
-            if (max_cycles > 0) {
+            if (max_cycles > 0)
+            {
                 if (cycles >= max_cycles - 1)
                 {
                     run = false;
@@ -191,18 +194,19 @@ int main(int argc, char *argv[])
                 {
                     mass_counts[cell.mass] += 1;
                 }
-/*
-                std::cout << cycles << std::endl;
-                // std::cout << "Total Mass: " << total_mass << std::endl;
                 outFile << cycles << ",";
-                double entropy{0};
-                for (auto &mass : mass_counts)
-                {
-                    // std::cout << mass.first << ", " << mass.second << std::endl;
-                    entropy -=
-                        (static_cast<double>(mass.second) / 1600) * std::log2(static_cast<double>(mass.second) / 1600);
-                }
-*/
+                /*
+                                std::cout << cycles << std::endl;
+                                // std::cout << "Total Mass: " << total_mass << std::endl;
+                                double entropy{0};
+                                for (auto &mass : mass_counts)
+                                {
+                                    // std::cout << mass.first << ", " << mass.second << std::endl;
+                                    entropy -=
+                                        (static_cast<double>(mass.second) / 1600) *
+                   std::log2(static_cast<double>(mass.second) / 1600);
+                                }
+                */
 
                 for (size_t i = 0; i < 11; i++)
                 {
@@ -216,12 +220,13 @@ int main(int argc, char *argv[])
                     }
                 }
                 outFile << total_mass << "\n";
-//                std::cout << entropy << std::endl;
+                //                std::cout << entropy << std::endl;
             }
         }
     }
 
     // Cleanup
+    outFile.close();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
