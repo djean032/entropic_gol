@@ -18,7 +18,7 @@ constexpr int WINDOW_HEIGHT = 720;
 constexpr int WINDOW_WIDTH = 720;
 constexpr int CELL_NUMBER = 100;
 constexpr int CELL_SIZE = WINDOW_WIDTH / 100;
-constexpr int PADDING = (WINDOW_WIDTH % 100)/2;
+constexpr int PADDING = (WINDOW_WIDTH % 100) / 2;
 typedef struct Color
 {
     int r;
@@ -167,8 +167,13 @@ int main(int argc, char *argv[])
 
         if (nogui && norand)
         {
-        } else {
+        }
+        else if (nogui)
+        {
             grid.set_rand();
+        }
+        else
+        {
         }
 
         drawGrid(grid);

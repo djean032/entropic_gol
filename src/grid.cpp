@@ -67,7 +67,7 @@ void Grid::update_grid()
                 bool cell_value = cells[i][j].alive;
                 if (cell_value)
                 {
-                    if (count > 5 || count < 2)
+                    if (count > 5 || count < 2 || cells[i][j].age > 12)
                     {
                         new_cells[i][j].alive = alive(generator);
                         if (!new_cells[i][j].alive)
@@ -75,10 +75,6 @@ void Grid::update_grid()
                             new_cells[i][j].mass = 0;
                             new_cells[i][j].age = 0;
                         }
-                    }
-                    else if (cells[i][j].age > 12)
-                    {
-                        new_cells[i][j].alive = alive(generator);
                     }
                     else
                     {
