@@ -14,9 +14,11 @@
 #include "SDL3/SDL_scancode.h"
 
 // Constants and structs
-constexpr int WINDOW_HEIGHT = 840;
-constexpr int WINDOW_WIDTH = 750;
-constexpr int CELL_SIZE = WINDOW_WIDTH / 40;
+constexpr int WINDOW_HEIGHT = 720;
+constexpr int WINDOW_WIDTH = 720;
+constexpr int CELL_NUMBER = 100;
+constexpr int CELL_SIZE = WINDOW_WIDTH / 100;
+constexpr int PADDING = (WINDOW_WIDTH % 100)/2;
 typedef struct Color
 {
     int r;
@@ -99,7 +101,7 @@ int main(int argc, char *argv[])
             return 1;
         }
     }
-    Grid grid = Grid(40);
+    Grid grid = Grid(CELL_NUMBER);
     Grid update_grid = grid;
     std::ofstream outFile;
     outFile.open(full_filename);
@@ -257,8 +259,8 @@ void drawGrid(Grid grid)
             }
             SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
             SDL_SetRenderDrawColor(renderer, cell_color.r, cell_color.g, cell_color.b, cell_color.a);
-            SDL_FRect rect = {static_cast<float>(15 + j * CELL_SIZE), static_cast<float>(15 + i * CELL_SIZE),
-                              static_cast<float>(CELL_SIZE - 2), static_cast<float>(CELL_SIZE - 2)};
+            SDL_FRect rect = {static_cast<float>(PADDING + j * CELL_SIZE), static_cast<float>(PADDING + i * CELL_SIZE),
+                              static_cast<float>(CELL_SIZE - 1), static_cast<float>(CELL_SIZE - 1)};
             SDL_RenderFillRect(renderer, &rect);
         }
     }

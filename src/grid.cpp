@@ -31,9 +31,9 @@ void Grid::set_rand()
         std::default_random_engine generator(seed);
         std::uniform_int_distribution<int> distributionInteger(1, 3);
         std::bernoulli_distribution distributionBool(0.25);
-        for (auto i = 0; i < 10; i++)
+        for (auto i = 0; i < this->size / 4; i++)
         {
-            for (auto j = 0; j < 10; j++)
+            for (auto j = 0; j < this->size / 4; j++)
             {
                 cells[i][j].alive = distributionBool(generator);
                 cells[i][j].age = 0;
@@ -58,7 +58,7 @@ void Grid::update_grid()
         unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
         std::default_random_engine generator(seed);
         std::bernoulli_distribution alive(0.008);
-        std::bernoulli_distribution kill(0.97);
+        std::bernoulli_distribution kill(0.99);
         for (auto i = 0; i < this->size; i++)
         {
             for (auto j = 0; j < this->size; j++)
@@ -67,7 +67,7 @@ void Grid::update_grid()
                 bool cell_value = cells[i][j].alive;
                 if (cell_value)
                 {
-                    if (count > 4 || count < 2)
+                    if (count > 5 || count < 2)
                     {
                         new_cells[i][j].alive = alive(generator);
                         if (!new_cells[i][j].alive)
